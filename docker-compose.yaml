@@ -1,0 +1,20 @@
+services:
+  db.commission:
+    image: postgres:15.3
+    restart: "no"
+    container_name: to_do_fastify
+    volumes:
+      - .docker/dbdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=docker
+      - POSTGRES_DB=todo
+      - POSTGRES_HOST=localhost
+      - POSTGRES_USER=postgres
+    ports:
+      - 5432:5432
+    networks:
+      - todo_network
+
+networks:
+  todo_network:
+    driver: bridge
