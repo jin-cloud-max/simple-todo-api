@@ -44,7 +44,9 @@ app.register(fastifySwaggerUi, {
   routePrefix: '/docs',
 })
 
-app.register(fastifyCors)
+app.register(fastifyCors, {
+  origin: '*',
+})
 
 app.register(helmet, { global: true })
 
