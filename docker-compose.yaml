@@ -1,8 +1,8 @@
 services:
-  db.commission:
+  db.api:
     image: postgres:15.3
     restart: "no"
-    container_name: to_do_fastify
+    container_name: todo_fastify_db
     volumes:
       - .docker/dbdata:/var/lib/postgresql/data
     environment:
@@ -10,10 +10,34 @@ services:
       - POSTGRES_DB=todo
       - POSTGRES_HOST=localhost
       - POSTGRES_USER=postgres
-    ports:
-      - 5432:5432
+    # ports:
+    #   - 5432:5432
     networks:
       - todo_network
+
+  todo.api:
+    container_name: todo
+    build: .
+    image: jin/todo
+    environment:
+      - DATABASE_URL=postgresql://postgres:docker@todo_fastify_db:5432/todo?schema=public
+    networks:
+      - todo_network
+    depends_on:
+      - db.api
+    command: "./scripts/start_server.sh"
+
+  todo.web:
+    image: nginx:alpine
+    container_name: todo_fastify_web
+    networks:
+      - todo_network
+    depends_on:
+      - todo.api
+    volumes:
+      - ./nginx:/etc/nginx
+    ports:
+      - 8080:80
 
 networks:
   todo_network:

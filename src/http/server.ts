@@ -58,5 +58,5 @@ app.register(deleteTodo)
 app.register(healthCheck)
 
 app.listen({ port: env.SERVER_PORT }).then(() => {
-  console.log('Server is running on port 3333')
+  console.log(`Server is running on port ${env.SERVER_PORT}`)
 })

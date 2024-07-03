@@ -2,10 +2,11 @@
   "name": "to-do-fastify",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./dist/src/http/server.js",
   "scripts": {
     "dev": "tsx watch src/http/server.ts",
-    "build": "rm -rf ./dist && tsc --build && tsc-alias"
+    "build": "rm -rf ./dist && tsc --build && tsc-alias",
+    "start": "node ./dist/http/server.js"
   },
   "keywords": [],
   "author": "",
