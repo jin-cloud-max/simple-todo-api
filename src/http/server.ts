@@ -57,6 +57,6 @@ app.register(deleteTodo)
 // HEALTH CHECK
 app.register(healthCheck)
 
-app.listen({ port: env.SERVER_PORT }).then(() => {
+app.listen({ port: env.SERVER_PORT, host: '0.0.0.0' }).then(() => {
   console.log(`Server is running on port ${env.SERVER_PORT}`)
 })

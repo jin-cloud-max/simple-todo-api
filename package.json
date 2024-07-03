@@ -1,7 +1,7 @@
 {
   "name": "to-do-fastify",
   "version": "1.0.0",
-  "description": "",
+  "description": "A simple To Do API",
   "main": "./dist/src/http/server.js",
   "scripts": {
     "dev": "tsx watch src/http/server.ts",
